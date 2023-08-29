@@ -52,7 +52,7 @@ export default class MainScene extends Phaser.Scene {
       star.disableBody(true, true);
       score += 10
       this.scoreText.setText(`SCORE ${score}`)
-      this.poin.play()
+      // this.poin.play()
     }
     const randomStar = () => {
       this.star = new Star(this, Phaser.Math.FloatBetween(0, this.cameras.main.width), -50)
@@ -66,8 +66,8 @@ export default class MainScene extends Phaser.Scene {
       player.setTint(0xff0000);
       this.physics.pause()
       this.cameras.main.shake(250)
-      this.backSound.pause()
-      this.gameOver.play()
+      // this.backSound.pause()
+      // this.gameOver.play()
     }
     const randomBomb = () => {
       this.bomb = new Bomb(this, Phaser.Math.FloatBetween(0, this.cameras.main.width), -50)
