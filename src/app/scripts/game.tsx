@@ -3,6 +3,8 @@ import Phaser, { Game as GameType } from "phaser";
 import MainScene from './scenes/mainScene'
 import PreloadScene from './scenes/preloadScene'
 import { useEffect, useState } from 'react';
+import BootScene from './scenes/bootScene';
+import MainMenuScene from './scenes/mainMenuScene';
 
 const DEFAULT_WIDTH = 1280
 const DEFAULT_HEIGHT = 720
@@ -23,9 +25,11 @@ const Game = () => {
             height: DEFAULT_HEIGHT
           },
           scene: [
+            BootScene,
             PreloadScene,
-             MainScene
-            ],
+            MainMenuScene,
+            MainScene
+          ],
           physics: {
             default: 'arcade',
             arcade: {
@@ -38,7 +42,7 @@ const Game = () => {
       }
       initPhaser();
     }
-    
+
   }, [game])
   return <div id="phaser-game" key={"phaser-game"}></div>;
 }

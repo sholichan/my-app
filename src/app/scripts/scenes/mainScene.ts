@@ -47,6 +47,7 @@ export default class MainScene extends Phaser.Scene {
     this.scoreText = new ScoreText(this, score)
     this.jumpCount = 0
 
+
     //add random star
     const collectStar = (player: any, star: any) => {
       star.disableBody(true, true);
@@ -68,6 +69,11 @@ export default class MainScene extends Phaser.Scene {
       this.cameras.main.shake(250)
       this.backSound.pause()
       this.gameOver.play()
+      const gameOverBack = () => {
+        this.scene.start('MainMenuScene')
+
+      }
+      this.time.addEvent({ delay: 3000, callback: gameOverBack, callbackScope: this, repeat: 1 })
     }
     const randomBomb = () => {
       this.bomb = new Bomb(this, Phaser.Math.FloatBetween(0, this.cameras.main.width), -50)
