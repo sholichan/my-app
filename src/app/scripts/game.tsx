@@ -3,7 +3,6 @@ import Phaser, { Game as GameType } from "phaser";
 import MainScene from './scenes/mainScene'
 import PreloadScene from './scenes/preloadScene'
 import { useEffect, useState } from 'react';
-import BootScene from './scenes/bootScene';
 import MainMenuScene from './scenes/mainMenuScene';
 
 const DEFAULT_WIDTH = 1280
@@ -25,7 +24,6 @@ const Game = () => {
             height: DEFAULT_HEIGHT
           },
           scene: [
-            BootScene,
             PreloadScene,
             MainMenuScene,
             MainScene
