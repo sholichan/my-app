@@ -17,6 +17,7 @@ export default class MainScene extends Phaser.Scene {
   gameOver!: Phaser.Sound.BaseSound
   scoreText!: ScoreText
   jumpCount!: number
+  backSoundState!: number
 
   keyW!: Phaser.Input.Keyboard.Key
   keyA!: Phaser.Input.Keyboard.Key
@@ -39,7 +40,7 @@ export default class MainScene extends Phaser.Scene {
     this.poin = this.sound.add('poin', { loop: false })
     this.jump = this.sound.add('jump', { loop: false, volume: 0.3 })
     this.gameOver = this.sound.add('gameover', { loop: false })
-    this.backSound.play()
+
 
     this.player = new Player(this, this.cameras.main.width / 2, this.cameras.main.height / 1.5)
     this.fpsText = new FpsText(this)
@@ -48,6 +49,7 @@ export default class MainScene extends Phaser.Scene {
     this.scoreText = new ScoreText(this, score)
     this.scoreText.depth = 1000
     this.jumpCount = 0
+    this.backSoundState = 0
 
 
     //add random star
@@ -69,13 +71,13 @@ export default class MainScene extends Phaser.Scene {
       player.setTint(0xff0000);
       this.physics.pause()
       this.cameras.main.shake(250)
-      this.backSound.pause()
+      this.backSound.destroy()
+      this.poin.destroy()
+      this.jump.destroy()
       this.gameOver.play()
-      const gameOverBack = () => {
-        this.scene.start('MainMenuScene')
-
-      }
-      this.time.addEvent({ delay: 3000, callback: gameOverBack, callbackScope: this, repeat: 1 })
+      this.bomb.destroy()
+      this.star.destroy()
+      this.time.addEvent({ delay: 2000, callback: () => { this.scene.start('MainMenuScene') }, callbackScope: this, repeat: 1 })
     }
     const randomBomb = () => {
       this.bomb = new Bomb(this, Phaser.Math.FloatBetween(0, this.cameras.main.width), -50)
@@ -93,6 +95,13 @@ export default class MainScene extends Phaser.Scene {
   }
 
   update() {
+    if (this.keyA.isDown && this.backSoundState == 0 || this.keyD.isDown && this.backSoundState == 0) {
+      this.backSound.play()
+      this.backSoundState = 1
+      console.log(this.backSoundState);
+      
+    }
+
     if (this.keyW.isDown && this.player.body!.blocked.down) {
       this.jump.play()
       this.player.setVelocityY(-300)

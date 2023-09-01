@@ -13,7 +13,6 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.on("progress",
       (value: number) => {
         // console.log(value);
-        // console.log('value');
         this.progressBar.clear();
         this.progressBar.fillStyle(0xfff6d3, 1);
         this.progressBar.fillRect(
