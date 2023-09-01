@@ -12,8 +12,8 @@ export default class PreloadScene extends Phaser.Scene {
 
     this.load.on("progress",
       (value: number) => {
-        console.log(value);
-        console.log('value');
+        // console.log(value);
+        // console.log('value');
         this.progressBar.clear();
         this.progressBar.fillStyle(0xfff6d3, 1);
         this.progressBar.fillRect(
@@ -27,7 +27,7 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.on("fileprogress",
       (file: any) => {
 
-        console.log(file.src);
+        // console.log(file.src);
 
       })
 
@@ -35,7 +35,7 @@ export default class PreloadScene extends Phaser.Scene {
       () => {
         this.progressBar.destroy();
         this.loadingBar.destroy();
-        console.log('complete');
+        // console.log('complete');
 
       });
     this.add.text(this.cameras.main.width / 3.8, this.cameras.main.height / 2.5, `Loading...`,

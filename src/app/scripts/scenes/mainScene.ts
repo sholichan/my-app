@@ -43,8 +43,10 @@ export default class MainScene extends Phaser.Scene {
 
     this.player = new Player(this, this.cameras.main.width / 2, this.cameras.main.height / 1.5)
     this.fpsText = new FpsText(this)
+    this.fpsText.depth = 1000
     var score = 0
     this.scoreText = new ScoreText(this, score)
+    this.scoreText.depth = 1000
     this.jumpCount = 0
 
 
@@ -95,18 +97,18 @@ export default class MainScene extends Phaser.Scene {
       this.jump.play()
       this.player.setVelocityY(-300)
       this.jumpCount = 1
-      console.log(this.player.body!.blocked.down);
-      console.log(this.player.y);
+      // console.log(this.player.body!.blocked.down);
+      // console.log(this.player.y);
     } else if (this.jumpCount == 1 && this.keyW.isDown && this.player.y <= 600) {
       this.jump.play()
       this.player.setVelocityY(-300)
       this.jumpCount = 0
-      console.log(this.player.y);
-      console.log(this.jumpCount);
+      // console.log(this.player.y);
+      // console.log(this.jumpCount);
     }
     if (this.keyS.isDown) {
       this.player.setVelocityY(400)
-      console.log(this.player.body!.touching.down);
+      // console.log(this.player.body!.touching.down);
     }
 
     if (this.keyA.isDown) {
